@@ -30,14 +30,15 @@ python3-wheel \
 rustc \
 supervisor \
 telnet \
-snmp
+snmp \
+bash
 
 RUN apt-get update && apt-get install -y \
   ${PYTHON}-venv ${PYTHON}-dev
 
 RUN git config --global --add safe.directory '*'
 
-ADD share/pdudaemon.conf /config/
+ADD pdudaemon.conf /config/
 WORKDIR /pdudaemon
 COPY . .
 RUN pipx install .[test]
